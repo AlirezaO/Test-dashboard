@@ -1,8 +1,10 @@
 "use client";
-import { Button } from "@mui/material";
 import { signIn, signOut } from "next-auth/react";
+import { useState } from "react";
 
 export default function AuthButton({ text }) {
+  const [clickCounter, setClickCounter] = useState(0);
+
   const onClick = async () => {
     switch (text) {
       case "Sign in with GitHub":
@@ -16,16 +18,26 @@ export default function AuthButton({ text }) {
       case "Logout":
         "use server";
         await signOut();
+        break;
+      case "Add":
+        setClickCounter(prev => prev + 1);
+        break;
+      case "Reset":
+        console.log("HERE!")
+        setClickCounter(0);
+        break;
       default:
         console.log("Clicked: ", text);
+        break;
     }
   };
-
+console.log("COUNT: ", clickCounter)
   return (
-    <form action={onClick}>
-      <Button type="submit" variant="contained" className="submit-button-class">
+    <form action={onClick} className="flex flex-col items-center justify-center gap-4">
+      <button type="submit" className="submit-button-class">
         {text}
-      </Button>
+      </button>
+      {clickCounter > 0 && <p className=" text-sm text-gray-600">Clicked {clickCounter} Times!</p>}
     </form>
   );
 }

@@ -7,9 +7,9 @@ module.exports = {
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
     "./sanity/**/*.{js,ts,jsx,tsx,mdx}",
   ],
-  // important: "#__next", // Crucial for Next.js with MUI
+  important: true,
   corePlugins: {
-    preflight: false, // Disable to prevent conflicts with MUI
+    preflight: true,
   },
   theme: {
     extend: {
@@ -74,7 +74,7 @@ module.exports = {
       },
       borderRadius: {
         lg: "var(--radius)",
-        md: "calc(var(--radius) - 2px)",
+        md: "8px",
         sm: "calc(var(--radius) - 4px)",
       },
       boxShadow: {

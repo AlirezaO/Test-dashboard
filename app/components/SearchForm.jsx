@@ -1,8 +1,8 @@
 export default function SearchForm() {
   return (
-    <form onSubmit="/search">
-      <input type="text" name="search" />
-      <button type="submit">Search</button>
+    <form onSubmit="/search" className="flex gap-2">
+      <input type="text" name="search" className="border-2 border-gray-800 rounded-md p-2 text-gray-800"/>
+      <button type="submit" className="submit-button-class border-2 border-gray-800">Search</button>
     </form>
   );
 }

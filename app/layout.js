@@ -1,8 +1,4 @@
 import "./globals.css";
-import { AppRouterCacheProvider } from "@mui/material-nextjs/v14-appRouter";
-import { ThemeProvider } from "@mui/material/styles";
-import CssBaseline from "@mui/material/CssBaseline";
-import { theme } from "./theme";
 import { workSans } from "./fonts";
 
 export const metadata = {
@@ -14,12 +10,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={workSans.variable} suppressHydrationWarning>
-        <AppRouterCacheProvider options={{ enableCssLayer: true }}>
-          <ThemeProvider theme={theme}>
-            <CssBaseline />
-            {children}
-          </ThemeProvider>
-        </AppRouterCacheProvider>
+        {children}
       </body>
     </html>
   );
