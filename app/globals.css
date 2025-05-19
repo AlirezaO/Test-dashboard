@@ -69,7 +69,7 @@
 
 @layer components {
   .submit-button-class {
-    @apply flex items-center justify-center border-2 border-gray-800 p-1 cursor-pointer rounded-md min-w-20 bg-yellow-500 text-black-100 font-semibold hover:bg-yellow-600;
+    @apply flex items-center h-11 justify-center border-2 border-gray-800 p-1 cursor-pointer rounded-md min-w-20 bg-yellow-500 text-black-100 font-semibold hover:bg-yellow-600;
   }
 }
 

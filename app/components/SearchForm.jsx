@@ -12,7 +12,7 @@ export default function SearchForm({ search }) {
         <input
           type="text"
           name="search"
-          className="border-2 border-gray-800 rounded-md p-2 text-gray-800 bg-gray-100"
+          className="border-2 border-gray-800 rounded-md p-2 text-gray-800 bg-gray-100 h-44px"
           placeholder={"search"}
           defaultValue={search}
         />
