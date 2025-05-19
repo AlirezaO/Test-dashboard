@@ -7,10 +7,10 @@ export default function SimpleButton({ text }) {
   const onClick = () => {
     switch (text) {
       case "Add":
-        setClickCounter(prev => prev + 1);
+        setClickCounter((prev) => prev + 1);
         break;
       case "Reset":
-        console.log("HERE!")
+        console.log("HERE!");
         setClickCounter(0);
         break;
       default:
@@ -18,13 +18,15 @@ export default function SimpleButton({ text }) {
         break;
     }
   };
-console.log("COUNT: ", clickCounter)
+  console.log("COUNT: ", clickCounter);
   return (
     <Fragment>
       <button onClick={onClick} className="submit-button-class">
         {text}
       </button>
-      {clickCounter > 0 && <p className=" text-sm text-gray-600">Clicked {clickCounter} Times!</p>}
-      </Fragment>
+      {clickCounter > 0 && (
+        <p className=" text-sm text-gray-600">Clicked {clickCounter} Times!</p>
+      )}
+    </Fragment>
   );
 }

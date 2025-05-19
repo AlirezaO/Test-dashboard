@@ -1,13 +1,28 @@
-export default function SearchForm() {
+import { SearchCheckIcon } from "lucide-react";
+import { handleSearch } from "../actions/search";
+import { SearchResultDisplay } from "./SearchResultDisplay";
+import { SubmitButton } from "./submitButton";
+import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
+
+export default function SearchForm({ search }) {
   return (
-    <form onSubmit="/search" className="flex gap-2">
-      <input 
-      type="text" 
-      name="search" 
-      className="border-2 border-gray-800 rounded-md p-2 text-gray-800 bg-gray-100"
-      placeholder="Search"
-      />
-      <button type="submit" className="submit-button-class border-2 border-gray-800">Search</button>
-    </form>
+    <div className="flex flex-col gap-2">
+      <form action={"/"} className="flex gap-2">
+        <input
+          type="text"
+          name="search"
+          className="border-2 border-gray-800 rounded-md p-2 text-gray-800 bg-gray-100"
+          placeholder={"search"}
+          defaultValue={search}
+        />
+        <Button type="submit" className="submit-button-class">
+          Submit
+          <SearchCheckIcon />
+        </Button>
+        {/* <SubmitButton type="submit" /> */}
+      </form>
+      {/* <SearchResultDisplay /> */}
+    </div>
   );
 }

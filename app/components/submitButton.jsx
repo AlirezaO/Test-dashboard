@@ -1,18 +1,12 @@
 "use client";
 
-import { useRouter } from "next/navigation";
-
-export const SubmitButton = ({ href }) => {
-  const router = useRouter();
-  const handleClick = () => {
+export const SubmitButton = ({ type = "button" }) => {
+  const handleClick = (e) => {
+    e.preventDefault();
     console.log("CLICKED!!!");
-    router.push(href);
   };
   return (
-    <button
-      className="bg-blue-500 text-white p-2 rounded-md cursor-pointer hover:scale-104 transition-transform duration-300"
-      onClick={handleClick}
-    >
+    <button type={type} className="submit-button-class" onClick={handleClick}>
       Submit
     </button>
   );

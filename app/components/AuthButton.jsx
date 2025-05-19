@@ -20,10 +20,10 @@ export default function AuthButton({ text }) {
         await signOut();
         break;
       case "Add":
-        setClickCounter(prev => prev + 1);
+        setClickCounter((prev) => prev + 1);
         break;
       case "Reset":
-        console.log("HERE!")
+        console.log("HERE!");
         setClickCounter(0);
         break;
       default:
@@ -31,13 +31,17 @@ export default function AuthButton({ text }) {
         break;
     }
   };
-console.log("COUNT: ", clickCounter)
   return (
-    <form action={onClick} className="flex flex-col items-center justify-center gap-4">
+    <form
+      action={onClick}
+      className="flex flex-col items-center justify-center gap-4"
+    >
       <button type="submit" className="submit-button-class">
         {text}
       </button>
-      {clickCounter > 0 && <p className=" text-sm text-gray-600">Clicked {clickCounter} Times!</p>}
+      {clickCounter > 0 && (
+        <p className=" text-sm text-gray-600">Clicked {clickCounter} Times!</p>
+      )}
     </form>
   );
 }
