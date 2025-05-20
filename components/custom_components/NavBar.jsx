@@ -1,5 +1,12 @@
 import * as React from "react";
-
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import { auth, signIn, signOut } from "@/auth";
 import Link from "next/link";
 
@@ -22,17 +29,34 @@ export default async function NavBar() {
 
       {session && session?.user ? (
         <div className="flex gap-4 justify-center items-center">
-          <Link
-            href={`profile/users/${session?.user?.name}`}
-            className="text-white hover:underline"
-          >
-            {session?.user?.name}
-          </Link>
-          <form action={handleLogout}>
-            <button type="submit" className="submit-button-class">
-              Logout
-            </button>
-          </form>
+          <DropdownMenu>
+            <DropdownMenuTrigger className="text-white cursor-pointer hover:text-gray-400">
+              {session?.user?.name}
+            </DropdownMenuTrigger>
+            <DropdownMenuContent className="base-class flex-col">
+              <DropdownMenuItem asChild>
+                <Link
+                  href={`profile/users/${session?.user?.name}`}
+                  className="w-full text-left cursor-pointer hover:bg-red-400"
+                >
+                  Profile
+                </Link>
+              </DropdownMenuItem>
+
+              <DropdownMenuSeparator className="bg-gray-400 w-9/10" />
+
+              <form action={handleLogout} className="w-full">
+                <DropdownMenuItem asChild>
+                  <button
+                    type="submit"
+                    className="w-full text-left cursor-pointer hover:bg-red-400"
+                  >
+                    Logout
+                  </button>
+                </DropdownMenuItem>
+              </form>
+            </DropdownMenuContent>
+          </DropdownMenu>
         </div>
       ) : (
         <form action={handleGithubLogin}>
