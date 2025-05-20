@@ -1,12 +1,19 @@
 import * as React from "react";
 
-import AuthButton from "./AuthButton";
-import { auth } from "@/auth";
+import { auth, signIn, signOut } from "@/auth";
 import Link from "next/link";
 
 export default async function NavBar() {
   const session = await auth();
   // console.log(session);
+  const handleGithubLogin = async () => {
+    "use server";
+    await signIn("github");
+  };
+  const handleLogout = async () => {
+    "use server";
+    await signOut({ redirectTo: "/" });
+  };
   return (
     <div className="w-full flex justify-between items-center p-3 bg-gray-800">
       <Link href="/" className="text-white text-2xl font-bold">
@@ -21,10 +28,18 @@ export default async function NavBar() {
           >
             {session?.user?.name}
           </Link>
-          <AuthButton text="Logout" />
+          <form action={handleLogout}>
+            <button type="submit" className="submit-button-class">
+              Logout
+            </button>
+          </form>
         </div>
       ) : (
-        <AuthButton text="Sign in with GitHub" />
+        <form action={handleGithubLogin}>
+          <button type="submit" className="submit-button-class">
+            Sign in with GitHub
+          </button>
+        </form>
       )}
     </div>
   );

@@ -1,7 +1,7 @@
 import { SearchCheckIcon } from "lucide-react";
-import { handleSearch } from "../actions/search";
-import { SearchResultDisplay } from "./SearchResultDisplay";
-import { SubmitButton } from "./submitButton";
+import { handleSearch } from "../../../app/actions/search";
+import { SearchResultDisplay } from "../SearchResultDisplay";
+import { SubmitButton } from "../Buttons/SubmitButton";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 

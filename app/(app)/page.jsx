@@ -1,5 +1,5 @@
-import AuthButton from "@/app/components/AuthButton";
-import SearchForm from "@/app/components/SearchForm";
+import AuthButton from "@/components/custom_components/Buttons/AuthButton";
+import SearchForm from "@/components/custom_components/TextFields/SearchForm";
 
 export default async function App({ searchParams }) {
   const search = await searchParams?.search;
