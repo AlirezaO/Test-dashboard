@@ -67,9 +67,33 @@
   }
 }
 
+
+@layer utilities {
+  .base-class {
+    @apply flex items-center justify-center;
+  }
+}
+
+
 @layer components {
   .submit-button-class {
-    @apply flex items-center h-11 justify-center border-2 border-gray-800 p-1 cursor-pointer rounded-md min-w-20 bg-yellow-500 text-black-100 font-semibold hover:bg-yellow-600;
+    @apply flex items-center h-11 justify-center border-2 border-[var(--color-dark)] p-1 cursor-pointer rounded-md min-w-20 bg-[var(--color-accent)] text-black-100 font-semibold hover:bg-[var(--color-warning)];
+  }
+
+  .nav-link {
+    @apply text-[var(--color-light)] hover:text-[var(--color-accent)] transition-colors;
+  }
+
+  .card {
+    @apply bg-[var(--color-light)] border border-[var(--color-dark)] rounded-lg p-4;
+  }
+
+  .alert-success {
+    @apply bg-[var(--color-success)] text-white p-4 rounded-md;
+  }
+
+  .alert-error {
+    @apply bg-[var(--color-danger)] text-white p-4 rounded-md;
   }
 }
 
@@ -110,6 +134,15 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+  --color-primary: #3b82f6;    /* blue-500 */
+  --color-secondary: #10b981;  /* emerald-500 */
+  --color-accent: #f59e0b;     /* amber-500 */
+  --color-danger: #ef4444;     /* red-500 */
+  --color-success: #22c55e;    /* green-500 */
+  --color-warning: #f97316;    /* orange-500 */
+  --color-info: #0ea5e9;       /* sky-500 */
+  --color-dark: #1f2937;       /* gray-800 */
+  --color-light: #f3f4f6;      /* gray-100 */
 }
 
 /*

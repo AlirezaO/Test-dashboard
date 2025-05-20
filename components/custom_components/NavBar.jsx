@@ -15,7 +15,7 @@ export default async function NavBar() {
     await signOut({ redirectTo: "/" });
   };
   return (
-    <div className="w-full flex justify-between items-center p-3 bg-gray-800">
+    <div className="w-full flex justify-between items-center p-3 bg-gray-800 fixed top-0 z-10">
       <Link href="/" className="text-white text-2xl font-bold">
         Home Page
       </Link>
