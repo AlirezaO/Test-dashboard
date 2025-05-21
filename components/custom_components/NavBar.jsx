@@ -9,17 +9,16 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { auth, signIn, signOut } from "@/auth";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 
 export default async function NavBar() {
   const session = await auth();
   // console.log(session);
-  const handleGithubLogin = async () => {
-    "use server";
-    await signIn("github");
-  };
+
   const handleLogout = async () => {
     "use server";
-    await signOut({ redirectTo: "/" });
+    await signOut();
+    redirect("/auth");
   };
   return (
     <div className="w-full flex justify-between items-center p-3 bg-gray-800 fixed top-0 z-10">
@@ -37,7 +36,7 @@ export default async function NavBar() {
               <DropdownMenuItem asChild>
                 <Link
                   href={`profile/users/${session?.user?.name}`}
-                  className="w-full text-left cursor-pointer hover:bg-red-400"
+                  className="w-full text-left cursor-pointer hover:bg-red-400 focus:bg-red-400 focus-visible:bg-red-400 active:bg-red-400"
                 >
                   Profile
                 </Link>
@@ -49,7 +48,7 @@ export default async function NavBar() {
                 <DropdownMenuItem asChild>
                   <button
                     type="submit"
-                    className="w-full text-left cursor-pointer hover:bg-red-400"
+                    className="w-full text-left cursor-pointer hover:bg-red-400 focus:bg-red-400 focus-visible:bg-red-400 active:bg-red-400"
                   >
                     Logout
                   </button>
@@ -59,11 +58,9 @@ export default async function NavBar() {
           </DropdownMenu>
         </div>
       ) : (
-        <form action={handleGithubLogin}>
-          <button type="submit" className="submit-button-class">
-            Sign in with GitHub
-          </button>
-        </form>
+        <Link href="/auth" className="submit-button-class">
+          Sign up
+        </Link>
       )}
     </div>
   );

@@ -1,5 +1,6 @@
 import "./globals.css";
 import { workSans } from "./fonts";
+import NavBar from "@/components/custom_components/NavBar";
 
 export const metadata = {
   title: "TEST DASHBOARD :D",
@@ -10,6 +11,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={workSans.variable} suppressHydrationWarning>
+        <NavBar />
         {children}
       </body>
     </html>
