@@ -1,6 +1,7 @@
 import "./globals.css";
 import { workSans } from "./fonts";
 import NavBar from "@/components/custom_components/NavBar";
+import { Toaster } from "sonner";
 
 export const metadata = {
   title: "TEST DASHBOARD :D",
@@ -13,6 +14,7 @@ export default function RootLayout({ children }) {
       <body className={workSans.variable} suppressHydrationWarning>
         <NavBar />
         {children}
+        <Toaster closeButton richColors />
       </body>
     </html>
   );

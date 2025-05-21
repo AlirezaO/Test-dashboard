@@ -15,6 +15,8 @@ import {
 import { useForm } from "react-hook-form";
 import { Input } from "@/components/ui/input";
 import GithubButton from "@/components/custom_components/Icons/GithubButton";
+import { submitEmail } from "@/app/actions/submitEmail";
+import { toast } from "sonner";
 
 export default function () {
   const form = useForm({
@@ -24,16 +26,24 @@ export default function () {
     },
   });
 
-  const handleGithubLogin = async () => {
-    console.log("CLICKED:!1");
+  async function handleFormSubmit(values) {
+    console.log("CLICKED:!1", values);
+    const result = await submitEmail(values);
+    if (result.status === "success") {
+      toast.success(result.message);
+      // console.log("SUCCESS", result.message);
+    } else {
+      toast.error(result.message);
+      // console.log("ERROR", result.message);
+    }
     // "use server";
     // await signIn("github", { redirectTo: "/" });
-  };
+  }
 
   return (
     <div className="base-class w-3/10 min-w-[300px] bg-white rounded-[6px] p-4">
       <Form {...form}>
-        <form action={handleGithubLogin} className="w-full">
+        <form onSubmit={form.handleSubmit(handleFormSubmit)} className="w-full">
           <FormField
             control={form.control}
             name="email"
