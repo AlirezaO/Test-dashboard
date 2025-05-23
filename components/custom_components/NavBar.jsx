@@ -7,19 +7,13 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { auth, signIn, signOut } from "@/auth";
+import { auth } from "@/auth";
 import Link from "next/link";
-import { redirect } from "next/navigation";
+import LogoutButton from "./Buttons/LogoutButton";
 
 export default async function NavBar() {
   const session = await auth();
-  // console.log(session);
 
-  const handleLogout = async () => {
-    "use server";
-    await signOut();
-    redirect("/auth");
-  };
   return (
     <div className="w-full flex justify-between items-center p-3 bg-gray-800 fixed top-0 z-10">
       <Link href="/" className="text-white text-2xl font-bold">
@@ -44,16 +38,9 @@ export default async function NavBar() {
 
               <DropdownMenuSeparator className="bg-gray-400 w-9/10" />
 
-              <form action={handleLogout} className="w-full">
-                <DropdownMenuItem asChild>
-                  <button
-                    type="submit"
-                    className="w-full text-left cursor-pointer hover:bg-red-400 focus:bg-red-400 focus-visible:bg-red-400 active:bg-red-400"
-                  >
-                    Logout
-                  </button>
-                </DropdownMenuItem>
-              </form>
+              <DropdownMenuItem asChild>
+                <LogoutButton />
+              </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
         </div>
