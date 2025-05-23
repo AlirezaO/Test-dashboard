@@ -36,7 +36,7 @@ export default async function NavBar() {
                 </Link>
               </DropdownMenuItem>
 
-              <DropdownMenuSeparator className="bg-gray-400 w-9/10" />
+              <DropdownMenuSeparator className="bg-gray-500 w-9/10" />
 
               <DropdownMenuItem asChild>
                 <LogoutButton />
