@@ -2,7 +2,7 @@ import AuthButton from "@/components/custom_components/Buttons/AuthButton";
 import SearchForm from "@/components/custom_components/TextFields/SearchForm";
 
 export default async function App({ searchParams }) {
-  const search = await searchParams?.search;
+  const search = (await searchParams).search;
   //   throw new Error("This is a test error");
 
   return (
