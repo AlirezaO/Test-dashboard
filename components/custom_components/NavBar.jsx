@@ -29,7 +29,7 @@ export default async function NavBar() {
             <DropdownMenuContent className="base-class flex-col">
               <DropdownMenuItem asChild>
                 <Link
-                  href={`profile/users/${session?.user?.name}`}
+                  href={`/profile/users/${session?.user?.name}`}
                   className="w-full text-left cursor-pointer hover:bg-red-400 focus:bg-red-400 focus-visible:bg-red-400 active:bg-red-400"
                 >
                   Profile
