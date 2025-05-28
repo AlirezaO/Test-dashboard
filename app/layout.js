@@ -2,6 +2,7 @@ import "./globals.css";
 import { workSans } from "./fonts";
 import NavBar from "@/components/custom_components/NavBar";
 import { Toaster } from "sonner";
+import "easymde/dist/easymde.min.css";
 
 export const metadata = {
   title: "TEST DASHBOARD :D",
