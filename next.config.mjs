@@ -15,6 +15,14 @@ const nextConfig = {
       },
     ],
   },
+  // experimental: {
+  //   ppr: "incremental",
+  // },
+  devIndicators: {
+    // appIsrStatus: true,
+    // buildActivity: true,
+    // buildActivityType: "bottom-right",
+  },
 };
 
 export default nextConfig;

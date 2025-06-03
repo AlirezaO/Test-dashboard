@@ -9,7 +9,7 @@ export default async function EachUser({ params }) {
     <div className="flex flex-col items-center justify-center gap-4 h-screen">
       <h1>Each User Page</h1>
       <h2>User ID: {userId}</h2>
-      <SimpleButton text="Add" />
+      <SimpleButton type={"add"}>Add</SimpleButton>
     </div>
   );
 }

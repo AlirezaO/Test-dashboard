@@ -1,4 +1,4 @@
-import { SearchCheckIcon } from "lucide-react";
+import { PlusIcon, SearchCheckIcon } from "lucide-react";
 import { handleSearch } from "../../../app/actions/search";
 import { SearchResultDisplay } from "../SearchResultDisplay";
 import { SubmitButton } from "../Buttons/SubmitButton";
@@ -20,8 +20,10 @@ export default function SearchForm({ search }) {
           Submit
           <SearchCheckIcon />
         </Button>
+
         {/* <SubmitButton type="submit" /> */}
       </form>
+
       {/* <SearchResultDisplay /> */}
     </div>
   );

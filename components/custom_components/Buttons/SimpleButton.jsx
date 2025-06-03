@@ -1,20 +1,24 @@
 "use client";
+import { useRouter } from "next/navigation";
 import { Fragment, useState } from "react";
 
-export default function SimpleButton({ text }) {
+export default function SimpleButton({ type, children, href }) {
   const [clickCounter, setClickCounter] = useState(0);
+  const router = useRouter();
 
   const onClick = () => {
-    switch (text) {
-      case "Add":
+    switch (type) {
+      case "add":
         setClickCounter((prev) => prev + 1);
         break;
       case "Reset":
         console.log("HERE!");
         setClickCounter(0);
         break;
+      case "redirect":
+        router.push(href);
+        break;
       default:
-        console.log("Clicked: ", text);
         break;
     }
   };
@@ -22,9 +26,9 @@ export default function SimpleButton({ text }) {
   return (
     <Fragment>
       <button onClick={onClick} className="submit-button-class">
-        {text}
+        {children}
       </button>
-      {clickCounter > 0 && (
+      {type === "add" && clickCounter > 0 && (
         <p className=" text-sm text-gray-600">Clicked {clickCounter} Times!</p>
       )}
     </Fragment>

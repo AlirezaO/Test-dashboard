@@ -3,8 +3,9 @@ import Image from "next/image";
 import { formatDistanceToNow } from "date-fns";
 
 export const StartupCard = ({ data }) => {
+  console.log("DATA: ", data);
   return (
-    <div className="bg-white max-w-[320px] rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
+    <div className="bg-gray-900 max-w-[320px] cursor-pointer rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 ">
       {/* Card Image */}
       <div className="relative h-48 w-full">
         <Image
@@ -23,10 +24,10 @@ export const StartupCard = ({ data }) => {
         </span>
 
         {/* Title */}
-        <h2 className="text-xl font-bold text-gray-800 mb-2">{data.title}</h2>
+        <h2 className="text-xl font-bold text-white-100 mb-2">{data.title}</h2>
 
         {/* Description */}
-        <p className="text-gray-600 mb-4 line-clamp-2 overflow-hidden text-ellipsis">
+        <p className="text-gray-400 mb-4 line-clamp-2 overflow-hidden text-ellipsis">
           {data.description}
         </p>
 
@@ -42,7 +43,7 @@ export const StartupCard = ({ data }) => {
               />
             </div>
             <div>
-              <p className="font-medium text-gray-800">{data.author.name}</p>
+              <p className="font-medium text-gray-500">{data.author.name}</p>
               <p className="text-sm text-gray-500">
                 {formatDistanceToNow(new Date(data._createdAt), {
                   addSuffix: true,
