@@ -15,18 +15,64 @@ import { Input } from "@/components/ui/input";
 import { submitEmail } from "@/app/actions/submitEmail";
 import { toast } from "sonner";
 import { createStartupSchema } from "@/utils/zodValidations/createStartup";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Button } from "@/components/ui/button";
+import FormFieldComponent from "./FormFieldComponent";
 
 export default function CreateStartupForm() {
-  const form = useForm({
-    resolver: zodResolver(createStartupSchema),
-    defaultValues: {
-      name: "",
-      description: "",
-      image: "",
-      category: "",
+  const formFields = [
+    {
+      name: "name",
+      label: "Name",
+      placeholder: "Enter a name for your startup",
+      type: "text",
     },
+    {
+      name: "description",
+      label: "Description",
+      placeholder: "Write a description for your startup",
+      type: "text-area",
+    },
+    {
+      name: "image",
+      label: "Image",
+      placeholder: "Add an image for your startup",
+      description: "Add an image for your startup",
+      type: "text",
+    },
+    {
+      name: "category",
+      label: "Category",
+      placeholder: "Select a category for your startup",
+      values: [
+        { value: "edu", label: "Education" },
+        { value: "tech", label: "Technology" },
+        { value: "info", label: "Information" },
+      ],
+      type: "select",
+    },
+  ];
+
+  const selectFields = formFields
+    .filter((field) => field.type === "select")[0]
+    .values.map((field) => field.value);
+
+  const form = useForm({
+    resolver: zodResolver(createStartupSchema({ selectFields })),
+    defaultValues: formFields.reduce(
+      (acc, field) => ({
+        ...acc,
+        [field.name]: "",
+      }),
+      {}
+    ),
   });
-  console.log("FORM : ", form, createStartupSchema);
 
   async function handleFormSubmit(values) {
     console.log("CLICKED:!1", values);
@@ -44,21 +90,20 @@ export default function CreateStartupForm() {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(handleFormSubmit)} className="w-full">
-        <FormField
-          control={form.control}
-          name="name"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Email</FormLabel>
-              <FormControl>
-                <Input placeholder="Enter your email" {...field} />
-              </FormControl>
-              <FormDescription>Enter your email to sign in</FormDescription>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+      <form
+        onSubmit={form.handleSubmit(handleFormSubmit)}
+        className="w-full flex flex-col gap-4"
+      >
+        {formFields.map((formField, index) => (
+          <FormFieldComponent
+            key={`formField${index}`}
+            form={form}
+            formField={formField}
+          />
+        ))}
+        <Button type="submit" className="cursor-pointer mt-8">
+          Submit
+        </Button>
       </form>
     </Form>
   );

@@ -1,8 +1,18 @@
 import { z } from "zod";
 
-export const createStartupSchema = z.object({
-  name: z.string().min(5),
-  description: z.string().min(1),
-  image: z.string().url(),
-  category: z.string(),
-});
+export const createStartupSchema = ({ selectFields }) =>
+  z.object({
+    name: z
+      .string()
+      .min(1, {
+        message: "Your startup must have a name!",
+      })
+      .max(50, {
+        message: "Name must be less than 50 characters.",
+      }),
+    description: z.string().min(1).max(150),
+    image: z.string().url(),
+    category: z.enum(selectFields, {
+      errorMap: () => ({ message: "Please select a category" }),
+    }),
+  });
