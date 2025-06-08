@@ -1,29 +1,13 @@
 "use client";
 import React from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
-import {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
+import { Form } from "@/components/ui/form";
 import { useForm } from "react-hook-form";
-import { Input } from "@/components/ui/input";
-import { submitEmail } from "@/app/actions/submitEmail";
 import { toast } from "sonner";
 import { createStartupSchema } from "@/utils/zodValidations/createStartup";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
 import FormFieldComponent from "./FormFieldComponent";
+import { submitStartupForm } from "@/app/actions/submitStartupForm";
 
 export default function CreateStartupForm() {
   const formFields = [
@@ -44,7 +28,8 @@ export default function CreateStartupForm() {
       label: "Image",
       placeholder: "Add an image for your startup",
       description: "Add an image for your startup",
-      type: "text",
+      type: "image",
+      defaultValue: new File([""], "filename"),
     },
     {
       name: "category",
@@ -68,7 +53,7 @@ export default function CreateStartupForm() {
     defaultValues: formFields.reduce(
       (acc, field) => ({
         ...acc,
-        [field.name]: "",
+        [field.name]: field.defaultValue ?? "",
       }),
       {}
     ),
@@ -76,13 +61,13 @@ export default function CreateStartupForm() {
 
   async function handleFormSubmit(values) {
     console.log("CLICKED:!1", values);
-    const result = await submitEmail(values);
+    const result = await submitStartupForm(values, selectFields);
     if (result.status === "success") {
       toast.success(result.message);
       // console.log("SUCCESS", result.message);
     } else {
       toast.error(result.message);
-      // console.log("ERROR", result.message);
+      console.log("ERROR", result.message);
     }
     // "use server";
     // await signIn("github", { redirectTo: "/" });
